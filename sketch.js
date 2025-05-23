@@ -3,12 +3,8 @@ let facemesh;
 let predictions = [];
 const indices = [409,270,269,267,0,37,39,40,185,61,146,91,181,84,17,314,405,321,375,291];
 const indices2 = [76,77,90,180,85,16,315,404,320,307,306,408,304,303,302,11,72,73,74,184];
-
-// 假設已經有取得 facemesh 的關鍵點座標陣列 predictions[0].scaledMesh
-
-// 新增要連線的兩組編號
-const group1 = [243,190,56,28,27,29,30,247,130,25,110,24,23,22,26,112];
-const group2 = [133,173,157,158,159,160,161,246,33,7,163,144,145,153,154,155];
+const indices3 = [243,190,56,28,27,29,30,247,130,25,110,24,23,22,26,112];
+const indices4 = [133,173,157,158,159,160,161,246,33,7,163,144,145,153,154,155];
 
 function setup() {
   createCanvas(640, 480).position(
@@ -77,20 +73,24 @@ function draw() {
     }
     endShape(CLOSE);
 
-    drawCustomShape(group1, '#91A8D0');
-    drawCustomShape(group2, '#91A8D0');
-  }
-}
+    // 畫出 indices3 的線條，顏色為 #91A8D0，粗細15
+    stroke('#91A8D0');
+    strokeWeight(15);
+    noFill();
+    for (let i = 0; i < indices3.length - 1; i++) {
+      const [x1, y1] = keypoints[indices3[i]];
+      const [x2, y2] = keypoints[indices3[i + 1]];
+      line(x1, y1, x2, y2);
+    }
 
-// 畫線並填色
-function drawCustomShape(points, fillColor) {
-  beginShape();
-  fill(fillColor);
-  stroke('#91A8D0');
-  strokeWeight(15);
-  for (let i = 0; i < points.length; i++) {
-    const [x, y] = predictions[0].scaledMesh[points[i]];
-    vertex(x, y);
+    // 畫出 indices4 的線條，顏色為 #91A8D0，粗細15
+    stroke('#91A8D0');
+    strokeWeight(15);
+    noFill();
+    for (let i = 0; i < indices4.length - 1; i++) {
+      const [x1, y1] = keypoints[indices4[i]];
+      const [x2, y2] = keypoints[indices4[i + 1]];
+      line(x1, y1, x2, y2);
+    }
   }
-  endShape(CLOSE);
 }
