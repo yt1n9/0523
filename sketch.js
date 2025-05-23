@@ -2,7 +2,7 @@ let video;
 let facemesh;
 let predictions = [];
 const points = [409,270,269,267,0,37,39,40,185,61,146,91,181,84,17,314,405,321,375,291];
-ㄋ
+
 function setup() {
   createCanvas(640, 480).position(
     (windowWidth - 640) / 2,
@@ -12,7 +12,7 @@ function setup() {
   video.size(width, height);
   video.hide();
 
-  facemesh = ml5.facemesh(video, modelReady);
+  facemesh = ml5.faceMesh(video, modelReady);
   facemesh.on('predict', results => {
     predictions = results;
   });
