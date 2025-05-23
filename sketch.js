@@ -100,9 +100,11 @@ function draw() {
     strokeWeight(15);
     noFill();
     for (let i = 0; i < indices5.length - 1; i++) {
-      const [x1, y1] = keypoints[indices5[i]];
-      const [x2, y2] = keypoints[indices5[i + 1]];
-      line(x1, y1, x2, y2);
+      const pt1 = keypoints[indices5[i]];
+      const pt2 = keypoints[indices5[i + 1]];
+      if (pt1 && pt2) {
+        line(pt1[0], pt1[1], pt2[0], pt2[1]);
+      }
     }
 
     // 畫出 indices6 的線條，顏色為 #F7CAC9，粗細15
@@ -110,9 +112,11 @@ function draw() {
     strokeWeight(15);
     noFill();
     for (let i = 0; i < indices6.length - 1; i++) {
-      const [x1, y1] = keypoints[indices6[i]];
-      const [x2, y2] = keypoints[indices6[i + 1]];
-      line(x1, y1, x2, y2);
+      const pt1 = keypoints[indices6[i]];
+      const pt2 = keypoints[indices6[i + 1]];
+      if (pt1 && pt2) {
+        line(pt1[0], pt1[1], pt2[0], pt2[1]);
+      }
     }
   }
 }
